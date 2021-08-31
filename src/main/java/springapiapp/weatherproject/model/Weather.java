@@ -1,7 +1,16 @@
 package springapiapp.weatherproject.model;
 
-import javax.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 public class Weather {
 
@@ -16,52 +25,17 @@ public class Weather {
     @OneToOne(mappedBy = "weather")
     private ConvertedRoot root;
 
-    public Weather() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Weather weather = (Weather) o;
+
+        return Objects.equals(id, weather.id);
     }
 
-    public Weather(String main, String description, String icon) {
-        this.main = main;
-        this.description = description;
-        this.icon = icon;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public ConvertedRoot getRoot() {
-        return root;
-    }
-
-    public void setRoot(ConvertedRoot convertedRoot) {
-        this.root = convertedRoot;
-    }
-
-    public String getMain() {
-        return main;
-    }
-
-    public void setMain(String main) {
-        this.main = main;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
+    @Override
+    public int hashCode() {
+        return 907319617;
     }
 }

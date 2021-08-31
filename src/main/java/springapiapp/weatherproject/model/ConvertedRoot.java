@@ -1,8 +1,17 @@
 package springapiapp.weatherproject.model;
 
+import lombok.*;
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 public class ConvertedRoot {
 
@@ -22,53 +31,17 @@ public class ConvertedRoot {
     @OneToOne(cascade = CascadeType.ALL)
     private Weather weather;
 
-    public ConvertedRoot() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        ConvertedRoot that = (ConvertedRoot) o;
+
+        return Objects.equals(id, that.id);
     }
 
-    public ConvertedRoot(String cityName, LocalDate date, Coord coord, Weather weather) {
-        this.name = cityName;
-        this.date = date;
-        this.coord = coord;
-        this.weather = weather;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Coord getCoord() {
-        return coord;
-    }
-
-    public void setCoord(Coord coord) {
-        this.coord = coord;
-    }
-
-    public Weather getWeather() {
-        return weather;
-    }
-
-    public void setWeather(Weather weather) {
-        this.weather = weather;
+    @Override
+    public int hashCode() {
+        return 1865687699;
     }
 }

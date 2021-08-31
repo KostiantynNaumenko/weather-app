@@ -1,7 +1,16 @@
 package springapiapp.weatherproject.model;
 
-import javax.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 public class Coord {
 
@@ -15,43 +24,18 @@ public class Coord {
     @OneToOne(mappedBy = "coord")
     private ConvertedRoot root;
 
-    public Coord() {
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Coord coord = (Coord) o;
+
+        return Objects.equals(id, coord.id);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public ConvertedRoot getRoot() {
-        return root;
-    }
-
-    public void setRoot(ConvertedRoot convertedRoot) {
-        this.root = convertedRoot;
-    }
-
-    public Coord(double lan, double lon) {
-        this.lat = lan;
-        this.lon = lon;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public double getLon() {
-        return lon;
-    }
-
-    public void setLon(double lon) {
-        this.lon = lon;
+    @Override
+    public int hashCode() {
+        return 260853378;
     }
 }
