@@ -5,17 +5,13 @@
     <title>Weather</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-</head>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script></head>
 <body>
 <!--/*@thymesVar id="users" type="java.util.List"*/-->
 <!--/*@thymesVar id="user" type="springapiapp.api.domain.User"*/-->
@@ -33,6 +29,7 @@
                             <thead class="thead-inverse">
                             <tr>
                                 <th>City</th>
+                                <th>Date</th>
                                 <th>Longitude</th>
                                 <th>Latitude</th>
                                 <th>Weather</th>
@@ -43,6 +40,7 @@
                             <tr th:each="root : ${roots}">
                                 <!--/*@thymesVar id="main" type="springapiapp.weatherproject.model.ConvertedRoot"*/-->
                                 <td th:text="${root.name}">Mountain View</td>
+                                <td th:text="${root.date}">Today</td>
                                 <!--/*@thymesVar id="main" type="springapiapp.weatherproject.model.Coord"*/-->
                                 <td th:text="${root.coord.lon}">-122.08</td>
                                 <td th:text="${root.coord.lat}">37.39</td>
