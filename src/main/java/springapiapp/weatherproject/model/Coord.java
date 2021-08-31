@@ -1,6 +1,9 @@
 package springapiapp.weatherproject.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -9,7 +12,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
 public class Coord {
@@ -24,6 +26,10 @@ public class Coord {
     @OneToOne(mappedBy = "coord")
     private ConvertedRoot root;
 
+    public Coord(double lat, double lon) {
+        this.lat = lat;
+        this.lon = lon;
+    }
 
     @Override
     public boolean equals(Object o) {

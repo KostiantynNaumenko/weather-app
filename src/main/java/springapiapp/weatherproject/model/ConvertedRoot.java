@@ -1,6 +1,9 @@
 package springapiapp.weatherproject.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -10,7 +13,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
 public class ConvertedRoot {
@@ -30,6 +32,13 @@ public class ConvertedRoot {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Weather weather;
+
+    public ConvertedRoot(String name, LocalDate date, Coord coord, Weather weather) {
+        this.name = name;
+        this.date = date;
+        this.coord = coord;
+        this.weather = weather;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,6 +1,9 @@
 package springapiapp.weatherproject.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -9,7 +12,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
 public class Weather {
@@ -21,6 +23,12 @@ public class Weather {
     private String main;
     private String description;
     private String icon;
+
+    public Weather(String main, String description, String icon) {
+        this.main = main;
+        this.description = description;
+        this.icon = icon;
+    }
 
     @OneToOne(mappedBy = "weather")
     private ConvertedRoot root;
